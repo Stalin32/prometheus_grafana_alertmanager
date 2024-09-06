@@ -1,3 +1,5 @@
+
+#!/bin/bash
 sudo apt update
 
 apt install wget tar
@@ -18,29 +20,31 @@ cd .. && rm -rf prometheus-*.linux-amd64/ && rm -f prometheus-*.linux-amd64.tar.
 
 sudo useradd --no-create-home --shell /bin/false prometheus
 
-sudo chown -R prometheus:prometheus /etc/prometheus /var/lib/prometheus
+sudo chown -R prometheus:prometheus /etc/prometheus 
+sudo chown -R prometheus:prometheus /var/lib/prometheus
 
-sudo chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}
+sudo chown prometheus:prometheus /usr/local/bin/prometheus
+sudo chown prometheus:prometheus /usr/local/bin/promtool
 
-sudo echo "[Unit]" >> ~/prometheus.service
-sudo echo "Description=Prometheus Service" >> ~/prometheus.service
-sudo echo "Documentation=https://prometheus.io/docs/introduction/overview/" >> ~/prometheus.service
-sudo echo "After=network.target" >> ~/prometheus.service
-sudo echo "" >> ~/prometheus.service
-sudo echo "[Service]" >> ~/prometheus.service
-sudo echo "User=prometheus" >> ~/prometheus.service
-sudo echo "Group=prometheus" >> ~/prometheus.service
-sudo echo "Type=simple" >> ~/prometheus.service
-sudo echo "ExecStart=/usr/local/bin/prometheus \" >> ~/prometheus.service
-sudo echo " --config.file /etc/prometheus/prometheus.yml \" >> ~/prometheus.service
-sudo echo " --storage.tsdb.path /var/lib/prometheus/ \" >> ~/prometheus.service
-sudo echo " --web.console.templates=/etc/prometheus/consoles \" >> ~/prometheus.service
+echo "[Unit]" >> ~/prometheus.service
+echo "Description=Prometheus Service" >> ~/prometheus.service
+echo "Documentation=https://prometheus.io/docs/introduction/overview/" >> ~/prometheus.service
+echo "After=network.target" >> ~/prometheus.service
+echo "" >> ~/prometheus.service
+echo "[Service]" >> ~/prometheus.service
+echo "User=prometheus" >> ~/prometheus.service
+echo "Group=prometheus" >> ~/prometheus.service
+echo "Type=simple" >> ~/prometheus.service
+echo "ExecStart=/usr/local/bin/prometheus \ " >> ~/prometheus.service
+sudo echo " --config.file /etc/prometheus/prometheus.yml \ " >> ~/prometheus.service
+sudo echo " --storage.tsdb.path /var/lib/prometheus/ \ " >> ~/prometheus.service
+sudo echo " --web.console.templates=/etc/prometheus/consoles \ " >> ~/prometheus.service
 sudo echo " --web.console.libraries=/etc/prometheus/console_libraries" >> ~/prometheus.service
 sudo echo "ExecReload=/bin/kill -HUP $MAINPID" >> ~/prometheus.service
 sudo echo "Restart=on-failure" >> ~/prometheus.service
 sudo echo "" >> ~/prometheus.service
 sudo echo "[Install]" >> ~/prometheus.service
-sudo echo "WantedBy=multi-user.target"" >> ~/prometheus.service
+sudo echo "WantedBy=multi-user.target" >> ~/prometheus.service
 
 sudo mv ~/prometheus.service /etc/systemd/system/
 sudo systemctl enable prometheus
