@@ -7,7 +7,7 @@ tar -zxf alertmanager-*.linux-amd64.tar.gz
 cd alertmanager-*.linux-amd64
 cp alertmanager amtool /usr/local/bin/
 cp alertmanager.yml /etc/alertmanager
-cd .. && rm -rf alertmanager-*.linux-amd64/
+cd .. && rm -rf alertmanager-*.linux-amd64/ && rm -f alertmanager-*.linux-amd64.tar.gz
 useradd --no-create-home --shell /bin/false alertmanager
 chown -R alertmanager:alertmanager /etc/alertmanager 
 chown -R alertmanager:alertmanager /var/lib/prometheus/alertmanager
@@ -35,5 +35,5 @@ echo "[Install]" >> ~/alertmanager.service
 echo "WantedBy=multi-user.target" >> ~/alertmanager.service
 
 mv ~/alertmanager.service /etc/systemd/system/
-# systemctl enable alertmanager
-# systemctl start alertmanager
+systemctl enable alertmanager
+systemctl start alertmanager
