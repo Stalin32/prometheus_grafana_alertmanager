@@ -35,10 +35,10 @@ echo "[Service]" >> ~/prometheus.service
 echo "User=prometheus" >> ~/prometheus.service
 echo "Group=prometheus" >> ~/prometheus.service
 echo "Type=simple" >> ~/prometheus.service
-echo "ExecStart=/usr/local/bin/prometheus \ " >> ~/prometheus.service
-echo " --config.file /etc/prometheus/prometheus.yml \ " >> ~/prometheus.service
-echo " --storage.tsdb.path /var/lib/prometheus/ \ " >> ~/prometheus.service
-echo " --web.console.templates=/etc/prometheus/consoles \ " >> ~/prometheus.service
+echo "ExecStart=/usr/local/bin/prometheus \\" >> ~/prometheus.service
+echo " --config.file /etc/prometheus/prometheus.yml \\" >> ~/prometheus.service
+echo " --storage.tsdb.path /var/lib/prometheus/ \\" >> ~/prometheus.service
+echo " --web.console.templates=/etc/prometheus/consoles \\" >> ~/prometheus.service
 echo " --web.console.libraries=/etc/prometheus/console_libraries" >> ~/prometheus.service
 echo "ExecReload=/bin/kill -HUP \$MAINPID" >> ~/prometheus.service
 echo "Restart=on-failure" >> ~/prometheus.service
