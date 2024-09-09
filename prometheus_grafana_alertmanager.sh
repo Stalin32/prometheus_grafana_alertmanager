@@ -1,8 +1,9 @@
 
 #!/bin/bash
 
-#установка Prometheus
-
+#установка Prometheus с базовой аутентификацией
+#пароль шифровать на сайте https://bcrypt-generator.com/
+ 
 apt update
 apt install wget tar
 wget https://github.com/prometheus/prometheus/releases/download/v2.53.2/prometheus-2.53.2.linux-amd64.tar.gz
@@ -29,6 +30,7 @@ echo "Group=prometheus" >> ~/prometheus.service
 echo "Type=simple" >> ~/prometheus.service
 echo "ExecStart=/usr/local/bin/prometheus \\" >> ~/prometheus.service
 echo " --config.file /etc/prometheus/prometheus.yml \\" >> ~/prometheus.service
+echo "--web.config.file=/etc/prometheus/web.yml \\" >> ~/prometheus.service
 echo " --storage.tsdb.path /var/lib/prometheus/ \\" >> ~/prometheus.service
 echo " --web.console.templates=/etc/prometheus/consoles \\" >> ~/prometheus.service
 echo " --web.console.libraries=/etc/prometheus/console_libraries" >> ~/prometheus.service
@@ -39,6 +41,11 @@ echo "[Install]" >> ~/prometheus.service
 echo "WantedBy=multi-user.target" >> ~/prometheus.service
 
 mv ~/prometheus.service /etc/systemd/system/
+
+echo "basic_auth_users:" >> /etc/prometheus/web.yml
+echo "  monitoring: \$2a$12$ZT1iX9dlqQPQZVOWiBIPdOihUgNgMcxQj4aqcK.QIBNQvV6N8YDnS" >> /etc/prometheus/web.yml #в этой строчке содержится логин:шифрованный_пароль
+
+
 systemctl enable prometheus
 systemctl start prometheus
 
