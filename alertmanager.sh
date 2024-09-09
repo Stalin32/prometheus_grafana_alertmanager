@@ -23,10 +23,10 @@ echo "EnvironmentFile=-/etc/default/alertmanager" >> ~/alertmanager.service
 echo "User=alertmanager" >> ~/alertmanager.service
 echo "Group=alertmanager" >> ~/alertmanager.service
 echo "Type=simple" >> ~/alertmanager.service
-echo "ExecStart=/usr/local/bin/alertmanager \ " >> ~/alertmanager.service
-echo "          --config.file=/etc/alertmanager/alertmanager.yml \ " >> ~/alertmanager.service
-echo "          --storage.path=/var/lib/prometheus/alertmanager \ " >> ~/alertmanager.service
-echo "          --cluster.advertise-address=0.0.0.0:9093 \ " >> ~/alertmanager.service
+echo "ExecStart=/usr/local/bin/alertmanager \\" >> ~/alertmanager.service
+echo "          --config.file=/etc/alertmanager/alertmanager.yml \\" >> ~/alertmanager.service
+echo "          --storage.path=/var/lib/prometheus/alertmanager \\" >> ~/alertmanager.service
+echo "          --cluster.advertise-address=0.0.0.0:9093 \\" >> ~/alertmanager.service
 echo "          \$ALERTMANAGER_OPTS" >> ~/alertmanager.service
 echo "ExecReload=/bin/kill -HUP \$MAINPID" >> ~/alertmanager.service
 echo "Restart=on-failure" >> ~/alertmanager.service
