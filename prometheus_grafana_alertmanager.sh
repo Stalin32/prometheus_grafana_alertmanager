@@ -30,7 +30,7 @@ echo "Group=prometheus" >> ~/prometheus.service
 echo "Type=simple" >> ~/prometheus.service
 echo "ExecStart=/usr/local/bin/prometheus \\" >> ~/prometheus.service
 echo " --config.file /etc/prometheus/prometheus.yml \\" >> ~/prometheus.service
-echo "--web.config.file=/etc/prometheus/web.yml \\" >> ~/prometheus.service
+echo " --web.config.file=/etc/prometheus/web.yml \\" >> ~/prometheus.service
 echo " --storage.tsdb.path /var/lib/prometheus/ \\" >> ~/prometheus.service
 echo " --web.console.templates=/etc/prometheus/consoles \\" >> ~/prometheus.service
 echo " --web.console.libraries=/etc/prometheus/console_libraries" >> ~/prometheus.service
@@ -85,6 +85,7 @@ echo "Group=alertmanager" >> ~/alertmanager.service
 echo "Type=simple" >> ~/alertmanager.service
 echo "ExecStart=/usr/local/bin/alertmanager \\" >> ~/alertmanager.service
 echo "          --config.file=/etc/alertmanager/alertmanager.yml \\" >> ~/alertmanager.service
+echo "          --web.config.file=/etc/prometheus/web.yml \\" >> ~/alertmanager.service
 echo "          --storage.path=/var/lib/prometheus/alertmanager \\" >> ~/alertmanager.service
 echo "          --cluster.advertise-address=0.0.0.0:9093 \\" >> ~/alertmanager.service
 echo "          \$ALERTMANAGER_OPTS" >> ~/alertmanager.service
