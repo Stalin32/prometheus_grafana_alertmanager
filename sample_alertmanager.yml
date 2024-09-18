@@ -1,0 +1,23 @@
+global:
+  resolve_timeout: 1m
+
+route:
+  receiver: 'alert-notification'
+  group_wait: 10s
+  group_interval: 1m
+  repeat_interval: 1m
+
+
+receivers:
+- name: 'alert-notification'
+  email_configs:
+    - to: 'to@yandex.ru'
+      from: 'from@yandex.ru'
+      smarthost: 'smtp.yandex.ru:587'
+      auth_username: 'from@yandex.ru'
+      auth_identity: 'from@yandex.ru'
+      auth_password: 'vulegmuvnybwbybc'
+
+  telegram_configs:
+    - bot_token: '7434678440:AAE5or6QLYQKwmdgwh8lbENhYunbbbbV2bA'
+      chat_id: -100941752734

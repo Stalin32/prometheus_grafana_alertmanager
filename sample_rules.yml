@@ -1,0 +1,20 @@
+groups:
+- name: ps
+  rules:
+  - alert: ps_High_memory_utiluzation
+    expr: ((1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100) > 85
+    for: 1m
+    annotations:
+      title: 'High memory utiluzation'
+      description: 'High memory utiluzation'
+    labels:
+      severity: 'crit'
+
+  - alert: ps_Docker_container_stopped
+    expr: engine_daemon_container_states_containers{state="stopped"} > 0
+    for: 1m
+    annotations:
+      title: '1 or more docker containers stopped'
+      description: '1 or more docker containers stopped'
+    labels:
+      severity: 'crit'
