@@ -43,7 +43,7 @@ echo "WantedBy=multi-user.target" >> ~/prometheus.service
 mv ~/prometheus.service /etc/systemd/system/
 
 echo "basic_auth_users:" >> /etc/prometheus/web.yml
-echo "  monitoring: \$2a$12$ZT1iX9dlqQPQZVOWiBIPdOihUgNgMcxQj4aqcK.QIBNQvV6N8YDnS" >> /etc/prometheus/web.yml #в этой строчке содержится логин:шифрованный_пароль
+echo "  monitoring: \$2a\$12\$ZT1iX9dlqQPQZVOWiBIPdOihUgNgMcxQj4aqcK.QIBNQvV6N8YDnS" >> /etc/prometheus/web.yml #в этой строчке содержится логин:шифрованный_пароль
 
 
 systemctl enable prometheus
