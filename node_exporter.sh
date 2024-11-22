@@ -17,7 +17,7 @@ echo "[Service]" >> ~/node_exporter.service
 echo "User=nodeusr" >> ~/node_exporter.service
 echo "Group=nodeusr" >> ~/node_exporter.service
 echo "Type=simple" >> ~/node_exporter.service
-echo "ExecStart=/usr/local/bin/node_exporter" >> ~/node_exporter.service
+echo "ExecStart=/usr/local/bin/node_exporter --collector.systemd" >> ~/node_exporter.service
 echo "ExecReload=/bin/kill -HUP \$MAINPID" >> ~/node_exporter.service
 echo "Restart=on-failure" >> ~/node_exporter.service
 echo "" >> ~/node_exporter.service
